@@ -39,5 +39,5 @@ jobs:
           EXCLUDE: "*"
           SCRIPT_AFTER: |
             cd ${{secrets.DOCKER_COMPOSE_PATH}}
-            /bin/bash echo ${{secrets.PASSWD}} | sudo -S deploy.sh
+            echo ${{secrets.PASSWD}} | sudo -S /bin/bash deploy.sh
           
