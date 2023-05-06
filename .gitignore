@@ -1,0 +1,11 @@
+# log
+log/
+
+# .vscode
+.vscode/
+
+# docker compose yaml
+docker-compose.yml
+
+# redis persistence relevant 
+Redis-docker-containers/
