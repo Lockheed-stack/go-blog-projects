@@ -259,6 +259,14 @@ func RedisArticleHset(key string, data ArticleList, field string) {
 		log.Println(err)
 	} else {
 		log.Printf("redis: Hset key \"%v\" successfully\n", key)
+		if field == "hot" { // set expire time for hottest articles
+			_, err2 := rdb.Expire(ctx, key, time.Hour*6).Result()
+			if err2 != nil {
+				log.Println(err2)
+			} else {
+				log.Printf("redis: key \"%v\" will expire after 6 hour", key)
+			}
+		}
 	}
 
 }
@@ -357,7 +365,7 @@ func RedisPersistenceToDb(t *time.Ticker) {
 			}
 
 			// exec sql
-			affected_row := UpdataArticlePv(values_sql[:len(values_sql)-1])
+			affected_row := UpdateArticlePv(values_sql[:len(values_sql)-1])
 			// update hottest article in next request and exec redis pipe
 			pipe.Del(ctx, "/controller/article/list/hot")
 			_, err := pipe.Exec(ctx)

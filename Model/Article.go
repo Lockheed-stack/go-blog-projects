@@ -240,7 +240,7 @@ func UpdateArticle(data *Article) int {
 	return errmsg.SUCCESS
 }
 
-func UpdataArticlePv(values_sql string) int {
+func UpdateArticlePv(values_sql string) int {
 
 	db.Exec(`create temporary table if not exists tmp (
 		id  int primary key,
