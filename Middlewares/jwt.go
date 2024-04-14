@@ -21,7 +21,7 @@ const (
 
 type MyClaims struct {
 	Username string `json:"username"`
-	Password string `json:"password"`
+	// Password string `json:"password"`
 	jwt.RegisteredClaims
 }
 
@@ -43,7 +43,7 @@ func GenerateToken(username string, password string) (string, int) {
 	}
 	SetClaims := MyClaims{
 		username,
-		password,
+		// password,
 		RegisteredClaims,
 	}
 
